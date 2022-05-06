@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/adobe/semantic-release-coralogix/compare/v1.0.1...v1.1.0) (2022-05-06)
+
+
+### Features
+
+* **verify:** make an API request with the provided token to verify that it can be used for tagging ([9f8db8f](https://github.com/adobe/semantic-release-coralogix/commit/9f8db8feb20a037d2babaf3faae06cafb41a5ab8))
+
 ## [1.0.1](https://github.com/adobe/semantic-release-coralogix/compare/v1.0.0...v1.0.1) (2022-05-06)
 
 
