@@ -26,26 +26,27 @@ async function fetch(...args) {
 }
 
 async function tag({
-  applications, subsystems, tagname, iconUrl, date, API_KEY, hostname = 'coralogix.com',
+  applications, subsystems, tagname, iconUrl, API_KEY, hostname = 'coralogix.com',
 }) {
-  const serviceurl = new URL(`https://webapi.${hostname}/api/v1/addTag`);
-  const res = await fetch(serviceurl, {
+  const serviceurl = new URL(`https://webapi.${hostname}/api/v1/external/tags`);
+  const req = {
     method: 'POST',
     body: JSON.stringify({
       iconUrl,
       name: tagname,
-      date,
-      application: applications,
-      subsystem: subsystems,
+      application: applications || [],
+      subsystem: subsystems || [],
     }),
     headers: {
       Authorization: `Bearer ${API_KEY}`,
+      'Content-Type': 'application/json',
     },
-  });
+  };
+  const res = await fetch(serviceurl.href, req);
   if (res.ok) {
     return true;
   }
-  throw new Error(await res.text());
+  throw new Error(`${await res.text()} ${res.status}`);
 }
 
 async function verifytoken({ hostname = 'coralogix.com', API_KEY }) {
