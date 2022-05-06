@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Semantic Release Coralogix Plugin",
   "main": "src/index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "test": " c8 mocha",
     "test-ci": "c8 mocha && codecov",
