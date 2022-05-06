@@ -11,13 +11,17 @@
  */
 
 /* eslint-env mocha */
+const assert = require('assert');
+const { verifyConditions, publish } = require('../src/index.js');
 
-import assert from 'assert';
-import { main } from '../src/index.js';
+describe('Verify Conditions Test', () => {
+  it('verifyConditions is a function ', async () => {
+    assert.strictEqual(typeof verifyConditions, 'function');
+  });
+});
 
-describe('Index Tests', () => {
-  it('index function is present', async () => {
-    const result = await main();
-    assert.strictEqual(result, 'Hello, world.');
+describe('Publish Test', () => {
+  it('publish is a function ', async () => {
+    assert.strictEqual(typeof publish, 'function');
   });
 });
