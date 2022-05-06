@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 const fs = require('fs').promises;
-const tag = require('./coralogix-tagger.js');
+const { tag } = require('./coralogix-tagger.js');
 
 module.exports = async function publish(pluginConfig, { nextRelease: { version }, logger }) {
   logger.log(`Tagging version ${version} in Coralogix`);

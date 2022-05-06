@@ -10,13 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-async function tag({
-  applications, subsystems, tagname, iconUrl, date, API_KEY, hostname = 'coralogix.com',
-}) {
+async function fetch(...args) {
   // semantic-release is using CJS, helix-fetch is using ESM, this is a workaround
   const { context, h1 } = await import('@adobe/helix-fetch');
   /* c8 ignore next 7 */
-  const { fetch } = process.env.HELIX_FETCH_FORCE_HTTP1
+  const { fetch: fetchapi } = process.env.HELIX_FETCH_FORCE_HTTP1
     ? h1({
       userAgent: 'helix-fetch', // static user-agent for recorded tests
     })
@@ -24,6 +22,12 @@ async function tag({
       userAgent: 'helix-fetch', // static user-agent for recorded tests
     });
 
+  return fetchapi(...args);
+}
+
+async function tag({
+  applications, subsystems, tagname, iconUrl, date, API_KEY, hostname = 'coralogix.com',
+}) {
   const serviceurl = new URL(`https://webapi.${hostname}/api/v1/addTag`);
   const res = await fetch(serviceurl, {
     method: 'POST',
@@ -44,4 +48,16 @@ async function tag({
   throw new Error(await res.text());
 }
 
-module.exports = tag;
+async function verifytoken({ hostname = 'coralogix.com', API_KEY }) {
+  const serviceurl = new URL(`https://api.${hostname}/api/v1/external/rules`);
+  const res = await fetch(serviceurl, {
+    headers: {
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  });
+  if (!res.ok) {
+    throw new Error('Invalid API key');
+  }
+}
+
+module.exports = { tag, verifytoken };

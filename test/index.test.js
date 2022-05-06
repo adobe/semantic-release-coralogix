@@ -29,7 +29,24 @@ describe('Verify Conditions Test', () => {
   it('verifyConditions will accept release when environment does have correct keys', async () => {
     const preenv = { ...process.env };
     process.env.CORALOGIX_TAGGER_API_KEY = 'test';
-    await assert.ok(await verifyConditions({}, {}));
+
+    nock('https://api.coralogix.com')
+      .get('/api/v1/external/rules')
+      .reply(200);
+
+    await assert.ok(await verifyConditions({}, { logger: console }));
+    process.env = preenv;
+  });
+
+  it('verifyConditions will accept reject release when provided API key is invalid', async () => {
+    const preenv = { ...process.env };
+    process.env.CORALOGIX_TAGGER_API_KEY = 'test';
+
+    nock('https://api.coralogix.com')
+      .get('/api/v1/external/rules')
+      .reply(401);
+
+    await assert.rejects(verifyConditions({}, {}));
     process.env = preenv;
   });
 });
