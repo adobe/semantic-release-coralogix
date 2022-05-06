@@ -60,20 +60,24 @@ describe('Publish Test', () => {
   it('publish calls Coralogix API', async () => {
     process.env.HELIX_FETCH_FORCE_HTTP1 = 'true';
 
-    nock('https://webapi.coralogix.com')
+    const scope = nock('https://webapi.coralogix.com')
       .post('/api/v1/external/tags')
       .reply(201);
 
     await publish({}, { nextRelease: { version: '1.0.0' }, logger: console });
+
+    assert.ok(scope.isDone());
   });
 
   it('publish fails if Coralogix API fails', async () => {
     process.env.HELIX_FETCH_FORCE_HTTP1 = 'true';
 
-    nock('https://webapi.coralogix.com')
-      .post('/api/v1/api/external/tags')
+    const scope = nock('https://webapi.coralogix.com')
+      .post('/api/v1/external/tags')
       .reply(500);
 
     await assert.rejects(publish({}, { nextRelease: { version: '2.0.0' }, logger: console }));
+
+    assert.ok(scope.isDone());
   });
 });
