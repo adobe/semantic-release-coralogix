@@ -9,11 +9,21 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-const { fetch } = require('@adobe/helix-fetch');
 
 async function tag({
-  applications, subsystems, tagname, iconUrl, date, API_KEY, hostname,
+  applications, subsystems, tagname, iconUrl, date, API_KEY, hostname = 'coralogix.com',
 }) {
+  // semantic-release is using CJS, helix-fetch is using ESM, this is a workaround
+  const { context, h1 } = await import('@adobe/helix-fetch');
+  /* c8 ignore next 7 */
+  const { fetch } = process.env.HELIX_FETCH_FORCE_HTTP1
+    ? h1({
+      userAgent: 'helix-fetch', // static user-agent for recorded tests
+    })
+    : context({
+      userAgent: 'helix-fetch', // static user-agent for recorded tests
+    });
+
   const serviceurl = new URL(`https://webapi.${hostname}/api/v1/addTag`);
   const res = await fetch(serviceurl, {
     method: 'POST',
