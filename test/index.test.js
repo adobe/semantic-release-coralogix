@@ -22,6 +22,7 @@ describe('Verify Conditions Test', () => {
 
   it('verifyConditions will reject release when environment does not have correct keys', async () => {
     const preenv = { ...process.env };
+    delete process.env.CORALOGIX_TAGGER_API_KEY;
     await assert.rejects(verifyConditions({}, {}));
     process.env = preenv;
   });
