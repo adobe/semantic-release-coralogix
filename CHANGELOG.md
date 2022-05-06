@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/adobe/semantic-release-coralogix/compare/v1.1.0...v1.1.1) (2022-05-06)
+
+
+### Bug Fixes
+
+* **coralogix:** make sure server does not reject request due to missing parameters ([cba70c5](https://github.com/adobe/semantic-release-coralogix/commit/cba70c511cc8813dc744b68d0ac1317d60366f37))
+
 # [1.1.0](https://github.com/adobe/semantic-release-coralogix/compare/v1.0.1...v1.1.0) (2022-05-06)
 
 
