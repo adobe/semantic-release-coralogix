@@ -60,7 +60,7 @@ describe('Publish Test', () => {
     process.env.HELIX_FETCH_FORCE_HTTP1 = 'true';
 
     nock('https://webapi.coralogix.com')
-      .post('/api/v1/addTag')
+      .post('/api/v1/external/tags')
       .reply(201);
 
     await publish({}, { nextRelease: { version: '1.0.0' }, logger: console });
@@ -70,7 +70,7 @@ describe('Publish Test', () => {
     process.env.HELIX_FETCH_FORCE_HTTP1 = 'true';
 
     nock('https://webapi.coralogix.com')
-      .post('/api/v1/addTag')
+      .post('/api/v1/api/external/tags')
       .reply(500);
 
     await assert.rejects(publish({}, { nextRelease: { version: '2.0.0' }, logger: console }));
