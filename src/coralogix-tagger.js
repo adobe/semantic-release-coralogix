@@ -22,7 +22,11 @@ async function fetch(...args) {
       userAgent: 'helix-fetch', // static user-agent for recorded tests
     });
 
-  return fetchapi(...args);
+  try {
+    return fetchapi(...args);
+  } finally {
+    context.reset();
+  }
 }
 
 async function tag({
