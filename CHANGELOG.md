@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/adobe/semantic-release-coralogix/compare/v1.1.1...v1.1.2) (2022-05-08)
+
+
+### Bug Fixes
+
+* **fetch:** reset context after fetch ([c3df261](https://github.com/adobe/semantic-release-coralogix/commit/c3df26165bfa2dd38e2c778958ea4dcb6086d61a))
+
 ## [1.1.1](https://github.com/adobe/semantic-release-coralogix/compare/v1.1.0...v1.1.1) (2022-05-06)
 
 
