@@ -10,14 +10,18 @@
  * governing permissions and limitations under the License.
  */
 const fs = require('fs').promises;
-const { tag } = require('./coralogix-tagger.js');
+const { tag, reset } = require('./coralogix-tagger.js');
 
 module.exports = async function publish(pluginConfig, { nextRelease: { version }, logger }) {
   logger.log(`Tagging version ${version} in Coralogix`);
   const packjson = JSON.parse(await fs.readFile('package.json', 'utf8'));
-  await tag({
-    tagname: `${packjson.name}@${version}`, // default tag name
-    ...pluginConfig,
-    API_KEY: process.env.CORALOGIX_TAGGER_API_KEY,
-  });
+  try {
+    await tag({
+      tagname: `${packjson.name}@${version}`, // default tag name
+      ...pluginConfig,
+      API_KEY: process.env.CORALOGIX_TAGGER_API_KEY,
+    });
+  } finally {
+    reset();
+  }
 };

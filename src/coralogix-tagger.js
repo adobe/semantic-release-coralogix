@@ -10,22 +10,32 @@
  * governing permissions and limitations under the License.
  */
 
+let myfetch;
+let mycontext;
+
 async function fetch(...args) {
   // semantic-release is using CJS, helix-fetch is using ESM, this is a workaround
   const { context, h1 } = await import('@adobe/helix-fetch');
   /* c8 ignore next 7 */
-  const { fetch: fetchapi } = process.env.HELIX_FETCH_FORCE_HTTP1
-    ? h1({
-      userAgent: 'helix-fetch', // static user-agent for recorded tests
-    })
-    : context({
-      userAgent: 'helix-fetch', // static user-agent for recorded tests
-    });
+  if (!myfetch) {
+    const { fetch: fetchapi, context: customcontext } = process.env.HELIX_FETCH_FORCE_HTTP1
+      ? h1({
+        userAgent: 'helix-fetch', // static user-agent for recorded tests
+      })
+      : context({
+        userAgent: 'helix-fetch', // static user-agent for recorded tests
+      });
+    myfetch = fetchapi;
+    mycontext = customcontext;
+  }
 
-  try {
-    return fetchapi(...args);
-  } finally {
-    context.reset();
+  return myfetch(...args);
+}
+
+function reset() {
+  /* c8 ignore next 3 */
+  if (typeof mycontext.reset === 'function') {
+    mycontext.reset();
   }
 }
 
@@ -65,4 +75,4 @@ async function verifytoken({ hostname = 'coralogix.com', API_KEY }) {
   }
 }
 
-module.exports = { tag, verifytoken };
+module.exports = { tag, verifytoken, reset };
