@@ -1,6 +1,6 @@
 {
   "name": "@adobe/semantic-release-coralogix",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Semantic Release Coralogix Plugin",
   "main": "src/index.js",
   "type": "commonjs",
