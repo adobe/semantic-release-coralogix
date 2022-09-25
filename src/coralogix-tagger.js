@@ -14,16 +14,16 @@ let myfetch;
 let mycontext;
 
 async function fetch(...args) {
-  // semantic-release is using CJS, helix-fetch is using ESM, this is a workaround
-  const { context, h1 } = await import('@adobe/helix-fetch');
+  // semantic-release is using CJS, @adobe/fetch is using ESM, this is a workaround
+  const { context, h1 } = await import('@adobe/fetch');
   /* c8 ignore next 7 */
   if (!myfetch) {
     const { fetch: fetchapi, context: customcontext } = process.env.HELIX_FETCH_FORCE_HTTP1
       ? h1({
-        userAgent: 'helix-fetch', // static user-agent for recorded tests
+        userAgent: 'adobe-fetch', // static user-agent for recorded tests
       })
       : context({
-        userAgent: 'helix-fetch', // static user-agent for recorded tests
+        userAgent: 'adobe-fetch', // static user-agent for recorded tests
       });
     myfetch = fetchapi;
     mycontext = customcontext;
