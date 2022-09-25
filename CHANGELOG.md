@@ -1,3 +1,10 @@
+## [1.1.8](https://github.com/adobe/semantic-release-coralogix/compare/v1.1.7...v1.1.8) (2022-09-25)
+
+
+### Bug Fixes
+
+* @adobe/helix-fetch -> @adobe/fetch ([#25](https://github.com/adobe/semantic-release-coralogix/issues/25)) ([6ee5910](https://github.com/adobe/semantic-release-coralogix/commit/6ee5910d304f5348c6445b37a1167c2ee1d27326))
+
 ## [1.1.7](https://github.com/adobe/semantic-release-coralogix/compare/v1.1.6...v1.1.7) (2022-08-07)
 
 
