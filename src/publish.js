@@ -22,6 +22,6 @@ module.exports = async function publish(pluginConfig, { nextRelease: { version }
       API_KEY: process.env.CORALOGIX_TAGGER_API_KEY,
     });
   } finally {
-    reset();
+    await reset();
   }
 };

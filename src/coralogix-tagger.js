@@ -32,10 +32,14 @@ async function fetch(...args) {
   return myfetch(...args);
 }
 
-function reset() {
-  /* c8 ignore next 3 */
-  if (typeof mycontext.reset === 'function') {
-    mycontext.reset();
+async function reset() {
+  if (mycontext) {
+    /* c8 ignore next 3 */
+    if (typeof mycontext.reset === 'function') {
+      await mycontext.reset();
+    }
+    myfetch = null;
+    mycontext = null;
   }
 }
 
