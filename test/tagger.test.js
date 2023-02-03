@@ -11,13 +11,20 @@
  */
 /* eslint-env mocha */
 const assert = require('assert');
+const nock = require('nock');
 const { tag } = require('../src/coralogix-tagger.js');
 
-describe.skip('Test Tagger', () => {
+describe('Test Tagger', () => {
   it('Tag an old release', async () => {
+    nock('https://webapi.coralogix.com')
+      .post('/api/v1/external/tags')
+      .reply((_, requestBody) => {
+        assert.strictEqual(requestBody.name, 'v1.0');
+        return [200];
+      });
     assert.ok(await tag({
       applications: ['semantic-release'],
-      tagname: 'semantic-release-test-tag',
+      tagname: 'v1.0',
       API_KEY: process.env.CORALOGIX_TAGGER_API_KEY,
     }));
   });
