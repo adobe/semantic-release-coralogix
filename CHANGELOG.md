@@ -1,3 +1,10 @@
+## [1.1.16](https://github.com/adobe/semantic-release-coralogix/compare/v1.1.15...v1.1.16) (2023-02-03)
+
+
+### Bug Fixes
+
+* invoke fetchContext.reset correctly ([#50](https://github.com/adobe/semantic-release-coralogix/issues/50)) ([5499824](https://github.com/adobe/semantic-release-coralogix/commit/5499824678ec4944eb6bbc9521ef7eb5229dcc74))
+
 ## [1.1.15](https://github.com/adobe/semantic-release-coralogix/compare/v1.1.14...v1.1.15) (2023-02-02)
 
 
