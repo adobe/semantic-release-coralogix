@@ -9,10 +9,8 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-
 const { verifytoken, reset } = require('./coralogix-tagger.js');
 
-// eslint-disable-next-line no-unused-vars
 module.exports = async function verify(pluginConfig, { logger }) {
   if (!process.env.CORALOGIX_TAGGER_API_KEY) {
     throw new Error('Environment variable CORALOGIX_TAGGER_API_KEY is not set, unable to tag releases in Coralogix');
