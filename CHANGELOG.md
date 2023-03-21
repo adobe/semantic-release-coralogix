@@ -1,3 +1,10 @@
+## [1.1.20](https://github.com/adobe/semantic-release-coralogix/compare/v1.1.19...v1.1.20) (2023-03-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/fetch to v4.0.6 ([2e2e8fe](https://github.com/adobe/semantic-release-coralogix/commit/2e2e8fefecdeda2dff9e329f81e6b7a2dd575a57))
+
 ## [1.1.19](https://github.com/adobe/semantic-release-coralogix/compare/v1.1.18...v1.1.19) (2023-03-14)
 
 
