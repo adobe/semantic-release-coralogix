@@ -48,6 +48,6 @@
     "*.cjs": "eslint"
   },
   "dependencies": {
-    "@adobe/fetch": "4.2.1"
+    "@adobe/fetch": "4.2.2"
   }
 }
