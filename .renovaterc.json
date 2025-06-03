@@ -1,4 +1,13 @@
 {
   "extends": ["github>adobe/helix-shared"],
-  "ignoreDeps": ["eslint", "@adobe/eslint-config-helix"]
+  "packageRules": [
+    {
+      "packageNames": ["@adobe/eslint-config-helix"],
+      "allowedVersions": "<3"
+    },
+    {
+      "packageNames": ["eslint"],
+      "allowedVersions": "<9"
+    }
+  ]
 }
