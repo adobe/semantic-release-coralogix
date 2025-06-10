@@ -76,7 +76,7 @@ describe('Publish Test', () => {
       .post('/api/v1/external/tags')
       .reply(500);
 
-    await assert.rejects(publish({}, { nextRelease: { version: '2.0.0' }, logger: console }));
+    await assert.rejects(publish({}, { nextRelease: { version: '2.0.0' }, logger: console }), /500/);
 
     assert.ok(scope.isDone());
   });

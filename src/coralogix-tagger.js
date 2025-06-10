@@ -9,7 +9,6 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-
 let fetchContext;
 
 async function getOrCreateFetchContext() {
@@ -53,7 +52,9 @@ async function tag({
   if (res.ok) {
     return true;
   }
-  throw new Error(`${await res.text()} ${res.status}`);
+  const module = await import('@semantic-release/error');
+  const SemanticReleaseError = module.default;
+  throw new SemanticReleaseError(`${await res.text()} ${res.status}`);
 }
 
 async function verifytoken({ hostname = 'coralogix.com', API_KEY }) {
