@@ -1,3 +1,10 @@
+## [1.1.38](https://github.com/adobe/semantic-release-coralogix/compare/v1.1.37...v1.1.38) (2025-06-10)
+
+
+### Bug Fixes
+
+* errors in publish should throw a SemanticReleaseError ([#195](https://github.com/adobe/semantic-release-coralogix/issues/195)) ([6614aa1](https://github.com/adobe/semantic-release-coralogix/commit/6614aa1c440ef7c89e85a1df4f4da9913046c52f))
+
 ## [1.1.37](https://github.com/adobe/semantic-release-coralogix/compare/v1.1.36...v1.1.37) (2025-05-26)
 
 
