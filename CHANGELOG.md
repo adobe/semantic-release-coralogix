@@ -1,3 +1,10 @@
+## [1.1.40](https://github.com/adobe/semantic-release-coralogix/compare/v1.1.39...v1.1.40) (2025-10-16)
+
+
+### Bug Fixes
+
+* update semantic-release to v25 and node to 24.x for OIDC ([bb23732](https://github.com/adobe/semantic-release-coralogix/commit/bb237322610fa57f035b3046a481fab2ca33c0ca))
+
 ## [1.1.39](https://github.com/adobe/semantic-release-coralogix/compare/v1.1.38...v1.1.39) (2025-09-16)
 
 
